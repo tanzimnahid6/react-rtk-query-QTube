@@ -13,7 +13,7 @@ export const apiSlice = createApi({
     }),
     getRelatedVideosByTitle: builder.query({
       query: ({ id, title }) => {
-        const tags = title.splits(" ");
+        const tags = title.split(" ");
         const likes = tags.map((tag) => `title_like=${tag}`);
         const queryString = `/videos?${likes.join("&")}&_limit=3`;
         return queryString;
