@@ -5,6 +5,7 @@ import VideoLoader from "../ui/loaders/VideoLoader";
 
 export default function Videos() {
   const { data: videos, isLoading, isError } = useGetAllVideosQuery();
+
   let content = null;
 
   if (isLoading) {
