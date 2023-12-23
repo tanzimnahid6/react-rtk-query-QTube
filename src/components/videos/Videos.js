@@ -2,9 +2,20 @@ import { useGetAllVideosQuery } from "../../features/apiSlice";
 import Video from "./Video";
 import Error from "../ui/Error";
 import VideoLoader from "../ui/loaders/VideoLoader";
+import { useEffect, useState } from "react";
 
 export default function Videos() {
-  const { data: videos, isLoading, isError } = useGetAllVideosQuery();
+    const [request,setRequest] = useState(false)
+  const { data: videos, isLoading, isError,refetch } = useGetAllVideosQuery(undefined,{
+    refetchOnReconnect:true ,
+    pollingInterval:5000,  //reload in the focus page after 5 sec continuously
+    skip:!request
+  });
+  //we get control to request the videos url ,now we can integrate reload button to refetch the videos ,on the overhands we can use refetch to do the same things
+  //TODO:set a reload button using redux in home page
+  useEffect(()=>{
+    setRequest(true)
+  },[])
 
   let content = null;
 

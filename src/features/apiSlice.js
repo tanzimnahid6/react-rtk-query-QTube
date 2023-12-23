@@ -7,6 +7,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getAllVideos: builder.query({
       query: () => "/videos",
+      keepUnusedDataFor:300         //refetch videos api after every 5 min continuously
     }),
     getSingleVideo: builder.query({
       query: (id) => `/videos/${id}`,

@@ -9,9 +9,13 @@ import PlayerLoader from "../ui/loaders/PlayerLoader";
 import RelatedVideoLoader from "../ui/loaders/RelatedVideoLoader";
 
 
+
+
 export default function Video() {
+
     const { videoId } = useParams();
     const { data: video, isLoading, isError } = useGetSingleVideoQuery(videoId);
+   
    
 
     let content = null;
