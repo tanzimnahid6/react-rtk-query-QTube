@@ -7,7 +7,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getAllVideos: builder.query({
       query: () => "/videos",
-      keepUnusedDataFor:300         //refetch videos api after every 5 min continuously
+      keepUnusedDataFor:600         //refetch videos api after every 10 min continuously
     }),
     getSingleVideo: builder.query({
       query: (id) => `/videos/${id}`,
@@ -20,10 +20,19 @@ export const apiSlice = createApi({
         return queryString;
       },
     }),
+    addVideo:builder.mutation({
+        query:(data)=>({
+            url:"/videos",
+            method:"POST",
+            body:data,
+
+        })
+    })
   }),
 });
 export const {
   useGetAllVideosQuery,
   useGetSingleVideoQuery,
   useGetRelatedVideosByTitleQuery,
+  useAddVideoMutation
 } = apiSlice;
