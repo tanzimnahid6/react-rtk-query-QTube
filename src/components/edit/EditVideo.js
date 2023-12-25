@@ -14,7 +14,7 @@ export default function EditVideo() {
   if (!isLoading && isError) {
     content = <Error></Error>;
   }
-  if (!isError && !isLoading && video.id) {
+  if (!isError && !isLoading && video._id) {
     content = <Form video={video} />;
   }
 

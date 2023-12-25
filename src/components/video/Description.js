@@ -6,13 +6,15 @@ import { useEffect } from "react";
 import Error from "../ui/Error";
 
 export default function Description({ video }) {
-  const { title, date, id, description } = video;
+  const { title, date, _id, description } = video;
   const navigate = useNavigate();
   const [deleteVideo, { isSuccess, isError, isLoading }] =
     useDeleteVideoMutation();
 
+    console.log(_id)
+
   const handleDelete = () => {
-    deleteVideo(id);
+    deleteVideo(_id);
   };
 
   useEffect(() => {
@@ -34,11 +36,11 @@ export default function Description({ video }) {
         <div className="flex gap-6 w-full justify-end">
           <div className="flex gap-1">
             <div className="shrink-0">
-              <Link to={`/videos/edit/${id}`}>
+              <Link to={`/videos/edit/${_id}`}>
                 <img className="w-5 block" src={editImage} alt="Edit" />
               </Link>
             </div>
-            <Link to={`/videos/edit/${id}`}>
+            <Link to={`/videos/edit/${_id}`}>
               <span className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
                 Edit
               </span>

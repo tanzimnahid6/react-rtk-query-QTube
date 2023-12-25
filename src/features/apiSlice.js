@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "videoApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://localhost:5000",
   }),
   tagTypes:['videos','video','relatedVideos'],
   endpoints: (builder) => ({
@@ -24,6 +24,7 @@ export const apiSlice = createApi({
         const tags = title.split(" ");
         const likes = tags.map((tag) => `title_like=${tag}`);
         const queryString = `/videos?${likes.join("&")}&_limit=3`;
+        
         return queryString;
       },
       providesTags:(result,error,arg)=>[
@@ -43,8 +44,8 @@ export const apiSlice = createApi({
     }),
 
     editVideo:builder.mutation({
-        query:({id,data})=>({
-            url:`/videos/${id}`,
+        query:({_id:id,data})=>({
+            url:`/videos/edit/${id}`,
             method:"PATCH",
             body:data
         }),

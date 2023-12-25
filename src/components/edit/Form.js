@@ -7,7 +7,7 @@ import Success from "../ui/Success";
 
 export default function Form({video}) {
     const {
-        id,
+        _id,
         title: initialTitle,
         author: initialAuthor,
         description: initialDescription,
@@ -37,7 +37,7 @@ export default function Form({video}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         editVideo({
-            id,
+            _id,
             data: {
                 title,
                 description,

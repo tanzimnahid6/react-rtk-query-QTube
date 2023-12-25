@@ -43,7 +43,7 @@ export default function Videos() {
   }
 
   if (!isLoading && !isError && videos?.length > 0) {
-    content = videos.map((video) => <Video key={video.id} video={video} />);
+    content = videos.map((video) => <Video key={video._id} video={video} />);
   }
 
   return content;
