@@ -23,17 +23,6 @@
       "thumbnail": "https://i3.ytimg.com/vi/N-U6AVcIPy4/maxresdefault.jpg"
     },
     {
-      "id": 3,
-      "title": "Tailwind CSS 3 tutorial - Upgrade to Tailwind 3 | Tailwind CSS Bangla Tutorial",
-      "description": "Tailwind CSS v3.0 came with incredible performance gains, huge workflow improvements, and a seriously ridiculous number of new features. In this tutorial - I have tried to explain different new features of Tailwind CSS version 3, how to install tailwind css 3, how to upgrade from tailwind v2 to v3 etc.",
-      "author": "Learn with Sumit",
-      "date": "March 11, 2022",
-      "duration": "10:12",
-      "views": "2.1k",
-      "link": "https://www.youtube-nocookie.com/embed/4M7D3O2XX4o",
-      "thumbnail": "https://i3.ytimg.com/vi/4M7D3O2XX4o/maxresdefault.jpg"
-    },
-    {
       "id": 4,
       "title": "Debounce Function in JavaScript - JavaScript Job Interview question",
       "description": "In this video, I have explained about the debounce function in JavaScript. This is a common question interviewers ask at Job Interviews. If you watch this video carefully, you will understand what is debounce and how to handle it with custom debounce function.",
@@ -62,7 +51,7 @@
       "author": "Learn with Sumit",
       "date": "Nov 08, 2021",
       "duration": "10:12",
-      "views": "2.1k",
+      "views": "2.9k",
       "link": "https://www.youtube-nocookie.com/embed/34tjWL9wi4g",
       "thumbnail": "https://i3.ytimg.com/vi/34tjWL9wi4g/maxresdefault.jpg"
     },
@@ -76,28 +65,6 @@
       "views": "2.1k",
       "link": "https://www.youtube-nocookie.com/embed/smDa6hoxLKI",
       "thumbnail": "https://i3.ytimg.com/vi/smDa6hoxLKI/maxresdefault.jpg"
-    },
-    {
-      "title": "t",
-      "description": "t",
-      "author": "t",
-      "link": "t",
-      "thumbnail": "t",
-      "date": "trhs",
-      "duration": "545",
-      "views": "455",
-      "id": 8
-    },
-    {
-      "title": "r",
-      "description": "r",
-      "author": "r",
-      "link": "r",
-      "thumbnail": "r",
-      "date": "5",
-      "duration": "5",
-      "views": "5",
-      "id": 9
     }
   ]
 }

@@ -15,10 +15,8 @@ export default function Video() {
 
     const { videoId } = useParams();
     const { data: video, isLoading, isError } = useGetSingleVideoQuery(videoId);
-   
-   
-
     let content = null;
+    
     if (isLoading) {
         content = (
             <>
