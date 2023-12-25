@@ -4,10 +4,12 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
   }),
+  tagTypes:['videos'],
   endpoints: (builder) => ({
     getAllVideos: builder.query({
       query: () => "/videos",
-      keepUnusedDataFor:600         //refetch videos api after every 10 min continuously
+      keepUnusedDataFor:600,
+      providesTags:['videos']         //refetch videos api after every 10 min continuously
     }),
     getSingleVideo: builder.query({
       query: (id) => `/videos/${id}`,
@@ -25,8 +27,9 @@ export const apiSlice = createApi({
             url:"/videos",
             method:"POST",
             body:data,
+        }),
+        invalidatesTags:['videos']
 
-        })
     })
   }),
 });
