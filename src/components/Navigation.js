@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/qtube.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../firebase.config";
+import { logOutUser } from "../features/authSlice/authSlice";
 const auth = getAuth(app);
 
 export default function Navigation() {
   const { email } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
   console.log(email);
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
         console.log("Sign-out successful.");
+        dispatch(logOutUser())
       })
       .catch((error) => {
         // An error happened.

@@ -16,6 +16,7 @@ export default function Form({video}) {
         date: initialDate,
         duration: initialDuration,
         views: initialViews,
+        like:initialLike
     } = video;
 
 
@@ -31,6 +32,8 @@ export default function Form({video}) {
     const [date, setDate] = useState(initialDate);
     const [duration, setDuration] = useState(initialDuration);
     const [views, setViews] = useState(initialViews);
+    const [like,setLike] = useState(initialLike)
+
 
 
 
@@ -47,6 +50,7 @@ export default function Form({video}) {
                 date,
                 duration,
                 views,
+                like
             },
         });
     };
@@ -116,6 +120,13 @@ export default function Form({video}) {
                                 title="Video no of views"
                                 value={views}
                                 onChange={(e) => setViews(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <TextInput
+                                title="Video no of Like"
+                                value={like}
+                                onChange={(e) => setLike(e.target.value)}
                             />
                         </div>
                     </div>
