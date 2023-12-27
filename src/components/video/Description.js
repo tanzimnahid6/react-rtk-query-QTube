@@ -21,7 +21,6 @@ export default function Description({ video }) {
     useDeleteVideoMutation();
   const [editVideo, { isSuccess: isLikeSuccess }] = useEditVideoMutation();
 
-  console.log(_id);
   const notify = () =>
     toast.warn("You have to login first", {
       position: "top-center",
@@ -56,7 +55,6 @@ export default function Description({ video }) {
       },
     });
   };
-  console.log(isLikeSuccess)
 
   return (
     <div>

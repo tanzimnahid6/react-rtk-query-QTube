@@ -4,8 +4,6 @@ import Error from "../../ui/Error";
 import RelatedVideoLoader from "../../ui/loaders/RelatedVideoLoader";
 
 export default function RelatedVideos({ id, title }) {
-    console.log(id);
-  //TODO:set up backend for like search
   const {
     data: relatedVideos,
     isLoading,
