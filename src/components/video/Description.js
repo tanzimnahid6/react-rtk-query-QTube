@@ -4,14 +4,16 @@ import editImage from "../../assets/edit.svg";
 import {
   useDeleteVideoMutation,
   useEditVideoMutation,
+  useGetUsersQuery,
 } from "../../features/apiSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Error from "../ui/Error";
 import { BiLike } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Description({ video }) {
   const { email } = useSelector((state) => state.auth);
@@ -21,8 +23,12 @@ export default function Description({ video }) {
     useDeleteVideoMutation();
   const [editVideo, { isSuccess: isLikeSuccess }] = useEditVideoMutation();
 
-  const notify = () =>
-    toast.warn("You have to login first", {
+  //user liked info
+
+  const { data } = useGetUsersQuery();
+
+  const notify = (text) =>
+    toast.warn(text, {
       position: "top-center",
       autoClose: 1500,
       hideProgressBar: false,
@@ -42,18 +48,21 @@ export default function Description({ video }) {
       navigate("/");
     }
   }, [isSuccess, navigate]);
+  const { data: user } = useGetUsersQuery();
 
   const handleLike = () => {
     if (!email) {
-      notify();
+      notify("You have to login first");
       return;
     }
+   
     editVideo({
       _id,
       data: {
         like: Number(like) + 1,
       },
     });
+    
   };
 
   return (

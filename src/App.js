@@ -12,10 +12,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { logInUser } from "./features/authSlice/authSlice";
 import app from "./firebase.config";
+
 const auth = getAuth(app);
 
 function App() {
   const dispatch = useDispatch();
+
   //on auth state change -- get previously sign in user =================================
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -23,7 +25,8 @@ function App() {
         email: currentUser?.email,
         userName: currentUser?.displayName,
       };
-      console.log(user);
+
+      //save user in local state=======
       dispatch(logInUser(user));
     });
     return () => unsubscribe();

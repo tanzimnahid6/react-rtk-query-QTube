@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "videoApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000",
+    baseUrl: "https://qtube-server.vercel.app",
   }),
   tagTypes: ["videos", "video", "relatedVideos"],
   endpoints: (builder) => ({
@@ -58,8 +58,18 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: (result, error, arg) => ["videos"],
     }),
-
-   
+    getUsers: builder.query({
+      query: () => {
+        return "/users";
+      },
+    }),
+    addUser: builder.mutation({
+      query: (data) => ({
+        url: "/users",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 export const {
@@ -69,4 +79,6 @@ export const {
   useAddVideoMutation,
   useEditVideoMutation,
   useDeleteVideoMutation,
+  useGetUsersQuery,
+  useAddUserMutation
 } = apiSlice;

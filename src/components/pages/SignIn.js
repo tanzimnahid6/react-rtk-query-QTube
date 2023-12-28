@@ -1,20 +1,20 @@
 // src/App.js
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-  
 } from "firebase/auth";
 import app from "../../firebase.config";
 
-
 import { Link } from "react-router-dom";
+import { useAddUserMutation } from "../../features/apiSlice";
 
 const auth = getAuth(app);
 
 const RegistrationPage = () => {
+  const [addUser, { data }] = useAddUserMutation();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,27 +33,29 @@ const RegistrationPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
+    const localUser = {
       username,
       email,
       password,
     };
-    console.log("User", user);
+    console.log("User", localUser);
     //firebase login and update user name =========================================================
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log("firebase user", user);
         //update user name==================================
         updateProfile(auth.currentUser, { displayName: username })
           .then(() => {
-            console.log(" user name updated");
+            console.log("updated user");
+            addUser({
+              userName: username,
+              email: email,
+            });
           })
           .catch((error) => {
             console.log("error occurred when user name was updated");
           });
-        // update =====================================
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,8 +64,6 @@ const RegistrationPage = () => {
         // ..
       });
   };
-
- 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -123,7 +123,10 @@ const RegistrationPage = () => {
               Register
             </button>
             <p className="text-right font-semibold text-gray-600 text-sm my-2">
-              already Registration?go to <Link to="/login" className="text-blue-400 hover:text-blue-600">Login </Link>{" "}
+              already Registration?go to{" "}
+              <Link to="/login" className="text-blue-400 hover:text-blue-600">
+                Login{" "}
+              </Link>{" "}
             </p>
           </div>
         </form>
