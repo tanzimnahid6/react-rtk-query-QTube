@@ -16,6 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Description({ video }) {
+  const { isDark } = useSelector((state) => state.dark);
+
   const { email } = useSelector((state) => state.auth);
   const { title, date, _id, description, like } = video;
   const navigate = useNavigate();
@@ -68,11 +70,11 @@ export default function Description({ video }) {
   return (
     <div>
       <ToastContainer />
-      <h1 className="text-lg font-semibold tracking-tight text-slate-800">
+      <h1 className={`text-lg font-semibold tracking-tight  ${isDark ? "text-white":"text-slate-800"}`}>
         {title}
       </h1>
-      <div className="pb-4 flex items-center space-between border-b gap-4">
-        <h2 className="text-sm leading-[1.7142857] text-slate-600 w-full">
+      <div className="pb-4 flex items-center space-between border-b gap-4 ">
+        <h2 className={`text-sm leading-[1.7142857]  w-full ${isDark ? "text-white":'text-slate-600'}`}>
           {date}
         </h2>
 
@@ -81,20 +83,20 @@ export default function Description({ video }) {
             <span onClick={handleLike}>
               <BiLike
                 size={24}
-                className="hover:scale-110 cursor-pointer hover:text-green-500"
+                className={`hover:scale-110 cursor-pointer hover:text-green-500 ${isDark ? "text-white":""}`}
               />
             </span>
-            <span>{like}</span>
+            <span className={`${isDark ? "text-white":"text-black"}`}>{like}</span>
           </div>
 
           <div className="flex gap-1 items-center">
             <div className="shrink-0">
               <Link to={`/videos/edit/${_id}`}>
-                <img className="w-5 block" src={editImage} alt="Edit" />
+                <img className="w-5 block"  src={editImage} alt="Edit" />
               </Link>
             </div>
             <Link to={`/videos/edit/${_id}`}>
-              <span className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
+              <span className={ `text-sm leading-[1.7142857]  cursor-pointer ${isDark ? "text-white":'text-slate-600'}`}>
                 Edit
               </span>
             </Link>
@@ -104,7 +106,7 @@ export default function Description({ video }) {
             <div className="shrink-0">
               <img className="w-5 block" src={deleteImage} alt="Delete" />
             </div>
-            <div className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
+            <div className={`text-sm leading-[1.7142857]  cursor-pointer ${isDark ? "text-white":'text-slate-600'}`}>
               Delete
             </div>
           </div>

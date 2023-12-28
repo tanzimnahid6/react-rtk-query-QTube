@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function RelatedVideo({ video }) {
+    const { isDark } = useSelector((state) => state.dark);
     const { _id, title, duration, author, views, date, thumbnail } = video;
 
     return (
@@ -16,7 +18,7 @@ export default function RelatedVideo({ video }) {
 
             <div className="flex flex-col w-full">
                 <Link to={`/videos/${_id}`}>
-                    <p className="text-slate-900 text-sm font-semibold">
+                    <p className={` text-sm font-semibold ${isDark ? "text-white":"text-slate-900"}`}>
                         {title}
                     </p>
                 </Link>

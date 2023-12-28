@@ -3,7 +3,10 @@ import RelatedVideo from "./RelatedVideo";
 import Error from "../../ui/Error";
 import RelatedVideoLoader from "../../ui/loaders/RelatedVideoLoader";
 
+
 export default function RelatedVideos({ id, title }) {
+  
+
   const {
     data: relatedVideos,
     isLoading,
