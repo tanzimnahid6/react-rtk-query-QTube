@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import authorImage from "../../assets/qtube.png";
+import { useSelector } from "react-redux";
 export default function Video({ video }) {
+    const { isDark } = useSelector((state) => state.dark);
     const { _id, title, duration, author, views, date, thumbnail } = video;
 
     return (
@@ -10,7 +12,7 @@ export default function Video({ video }) {
                     <Link to={`/videos/${_id}`}>
                         <img
                             src={thumbnail}
-                            className="w-full h-auto"
+                            className={`w-full h-auto `}
                             alt={title}
                         />
                     </Link>
@@ -29,7 +31,7 @@ export default function Video({ video }) {
 
                     <div className="flex flex-col">
                         <Link to={`/videos/${_id}`}>
-                            <p className="text-slate-900 text-sm font-semibold">
+                            <p className={` text-sm font-semibold  ${isDark ? "text-white":"text-slate-900"} `}>
                                 {title}
                             </p>
                         </Link>
