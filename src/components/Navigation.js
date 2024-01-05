@@ -52,7 +52,7 @@ export default function Navigation() {
 
           {email ? (
             <div onClick={() => handleLogout()}>
-              <span className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500 cursor-pointer">
+              <span className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500 cursor-pointer">
                 Logout
               </span>
             </div>

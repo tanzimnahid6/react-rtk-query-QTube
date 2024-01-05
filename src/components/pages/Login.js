@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../firebase.config";
 const auth = getAuth(app);
@@ -8,6 +8,9 @@ const auth = getAuth(app);
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || "/"
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -27,11 +30,13 @@ const LoginPage = () => {
         // Signed in
         const user = userCredential.user;
         console.log('login user === ',user)
+        navigate(from, { replace: true })
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode,errorMessage)
       });
   };
 
