@@ -6,7 +6,7 @@ import Edit from "./components/pages/Edit";
 import Home from "./components/pages/Home";
 import Video from "./components/pages/Video";
 import Login from "./components/pages/Login";
-import SignIn from "./components/pages/SignIn";
+import SignUp from "./components/pages/SignUp";
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
         <Route path="/videos/:videoId" element={<Video />} />
         <Route
           path="/videos/add"

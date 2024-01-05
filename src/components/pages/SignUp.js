@@ -8,16 +8,20 @@ import {
 } from "firebase/auth";
 import app from "../../firebase.config";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAddUserMutation } from "../../features/apiSlice";
+
 
 const auth = getAuth(app);
 
 const RegistrationPage = () => {
+ 
+
   const [addUser, { data }] = useAddUserMutation();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -63,6 +67,12 @@ const RegistrationPage = () => {
         console.log(errorMessage);
         // ..
       });
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    navigate('/')
+    
+
   };
 
   return (
@@ -123,7 +133,7 @@ const RegistrationPage = () => {
               Register
             </button>
             <p className="text-right font-semibold text-gray-600 text-sm my-2">
-              already Registration?go to{" "}
+              already Registration ? go to{" "}
               <Link to="/login" className="text-blue-400 hover:text-blue-600">
                 Login{" "}
               </Link>{" "}

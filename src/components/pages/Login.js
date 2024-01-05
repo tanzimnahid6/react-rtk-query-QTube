@@ -2,15 +2,17 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { FaEye } from "react-icons/fa";
 import app from "../../firebase.config";
 const auth = getAuth(app);
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const location = useLocation()
-  const navigate = useNavigate()
-  const from = location.state?.from?.pathname || "/"
+  const [isOpen,setIsOpen] = useState(true)
+  const [email, setEmail] = useState("abc@gamil.com");
+  const [password, setPassword] = useState("123456");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -29,17 +31,20 @@ const LoginPage = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log('login user === ',user)
-        navigate(from, { replace: true })
+        console.log("login user === ", user);
+        navigate(from, { replace: true });
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode,errorMessage)
+        console.log(errorCode, errorMessage);
       });
   };
+const handleHidden = ()=>{
+  setIsOpen(!isOpen)
 
+}
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
@@ -68,14 +73,17 @@ const LoginPage = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              required
-              id="password"
-              className="mt-1 p-2 w-full border rounded-md"
-              value={password}
-              onChange={handlePasswordChange}
-            />
+            <div className="flex items-center relative">
+              <input
+                type={isOpen ? "password" : 'text'}
+                required
+                id="password"
+                className="mt-1 p-2 w-full border rounded-md"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <div className="absolute right-5 cursor-pointer" onClick={handleHidden}><FaEye /></div>
+            </div>
           </div>
           <div className="mb-6">
             <button
@@ -85,11 +93,10 @@ const LoginPage = () => {
               Login
             </button>
             <p className="text-right font-semibold text-gray-600 text-sm my-2">
-              Not have account?go to{" "}
+              Not have account?go to
               <Link to="/signIn" className="text-blue-400 hover:text-blue-600">
-                {" "}
-                Registration{" "}
-              </Link>{" "}
+                Registration
+              </Link>
             </p>
           </div>
         </form>
